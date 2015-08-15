@@ -33,6 +33,8 @@ public class ShadowrunRoller {
                 input = in.nextLine();
             }
             else {
+                System.out.flush();
+                w.scroll();
                 input = w.input();
                 System.out.println('#'+input);
             }
@@ -44,16 +46,29 @@ public class ShadowrunRoller {
                     String test = "";
                     for(int i = 1; i < split.length; ++i)
                         test += split[i];
-                    TestHandler.testSimple(test);
+                    if(test.isEmpty())
+                        System.out.println("Error: No parameters found for roll.");
+                    else
+                        TestHandler.testSimple(test);
                     System.out.println();
                     break;
                 case "raw":
+                    if(split.length == 1) {
+                        System.out.println("Error: No dice count found for roll.");
+                    System.out.println();
+                        continue;
+                    }
                     for(int i = 0; i < Parser.sum(split[1]); ++i)
                         System.out.print(Roller.roll(1) + " ");
                     System.out.println();
                     System.out.println();
                     break;
                 case "dice":
+                    if(split.length == 1) {
+                        System.out.println("Error: No dice count found for roll.");
+                    System.out.println();
+                        continue;
+                    }
                     System.out.println("Roll: " + Roller.roll(Parser.sum(split[1])));
                     System.out.println();
                     break;
@@ -82,8 +97,10 @@ public class ShadowrunRoller {
                     System.out.println("Info: Help? You're in the shadows now, buddy.");
                     System.out.println();
                     break;
+                default:
+                    System.out.println("Error: Unknown command '" + split[0] + "'.");
+                    System.out.println();
             }
-            
         } while(!input.contentEquals("exit") && !input.contentEquals("quit"));
         System.exit(0);
     }

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import javax.swing.JFrame;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -39,6 +40,7 @@ public class Window {
     private JFrame frame;
     private JTextField jtf;
     private StringBuilder input;
+    private JScrollPane jsp;
     public Window() {
         frame = new JFrame();
         frame.setTitle("Shadowrun v5 Dice Roller");
@@ -48,7 +50,7 @@ public class Window {
         ta.setEditable(false);
         PrintStream ps = new PrintStream(new TextAreaOutputStream(ta));
         System.setOut(ps);
-        JScrollPane jsp = new JScrollPane(ta);
+        jsp = new JScrollPane(ta);
         
         jtf = new JTextField(24);
         jtf.addActionListener(new ActionListener() {
@@ -104,5 +106,13 @@ public class Window {
         jtf.setText("");
         jtf.disable();
         return input.toString();
+    }
+    public void scroll() {
+        JScrollBar h = jsp.getHorizontalScrollBar();
+        if(h != null)
+            h.setValue(h.getMinimum());
+        JScrollBar v = jsp.getVerticalScrollBar();
+        if(v != null)
+            v.setValue(v.getMaximum());
     }
 }

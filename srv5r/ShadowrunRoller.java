@@ -6,8 +6,7 @@
 
 package srv5r;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.awt.GraphicsEnvironment;
 import java.util.Scanner;
 
 /**
@@ -17,13 +16,26 @@ import java.util.Scanner;
 public class ShadowrunRoller {
 
     public static void main(String[] args) {
+        Window w = null;
+        if(System.console() == null) {
+            if(!GraphicsEnvironment.isHeadless()) {
+                w = new Window();
+            } else
+                System.exit(1);
+        }
         System.out.println("Shadowrun v5 Dice Roller. Never make a deal with a dragon.");
         System.out.println();
         String input;
         Scanner in = new Scanner(System.in);
         do {
-            System.out.print('#');
-            input = in.nextLine();
+            if(w == null) {
+                System.out.print('#');
+                input = in.nextLine();
+            }
+            else {
+                input = w.input();
+                System.out.println('#'+input);
+            }
             String[] split = input.split("\\s+");
             if(split.length == 0)
                 continue;
@@ -65,9 +77,15 @@ public class ShadowrunRoller {
                     System.out.println("Roll: " + Roller.roll(Parser.sum(split[1])));
                     System.out.println();
                     break;
+                case "help":
+                    System.out.println("Help? You're in the shadows now, buddy.");
+                    System.out.println("Ask your resident guardian angel or something.");
+                    System.out.println();
+                    break;
             }
             
         } while(!input.contentEquals("exit") && !input.contentEquals("quit"));
+        System.exit(0);
     }
     
 }

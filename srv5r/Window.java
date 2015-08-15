@@ -41,12 +41,13 @@ public class Window {
     private JTextField jtf;
     private StringBuilder input;
     private JScrollPane jsp;
+    private JTextArea ta;
     public Window() {
         frame = new JFrame();
         frame.setTitle("Shadowrun v5 Dice Roller");
         input = new StringBuilder();
         
-        JTextArea ta = new JTextArea();
+        ta = new JTextArea();
         ta.setEditable(false);
         PrintStream ps = new PrintStream(new TextAreaOutputStream(ta));
         System.setOut(ps);
@@ -114,5 +115,8 @@ public class Window {
         JScrollBar v = jsp.getVerticalScrollBar();
         if(v != null)
             v.setValue(v.getMaximum());
+    }
+    public void clear() {
+        ta.setText("");
     }
 }

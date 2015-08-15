@@ -97,7 +97,8 @@ public class ShadowrunRoller {
                         TestHandler.damage(0, split[1], split[2], split[3], split[4]);
                     break;
                 case "help":
-                    System.out.println("Info: Help? You're in the shadows now, buddy.");
+                    w.clear();
+                    HelpPrinter.printHelp();
                     break;
                 case "cls":
                     w.clear();

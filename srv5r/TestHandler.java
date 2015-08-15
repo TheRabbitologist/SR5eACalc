@@ -134,14 +134,23 @@ public class TestHandler {
         if(arm > 0)
             arm = Math.max(0,arm+Parser.sum(ap));
         char type;
-        if(atk >= arm)
+        if(atk >= arm) {
             type = Character.toUpperCase(dmg.charAt(dmg.length()-1));
-        else
+            if(type != 'P' && type != 'S')
+                type = '?';
+        } else
             type = 'S';
-        atk -= Roller.hits(arm+bod);
+        int def = Roller.hits(arm+bod);
+        atk -= def;
         if(atk <= 0)
-            System.out.println("Blocked.");
+            System.out.println("Blocked: "+(atk+def)+type+" v. "+def);
         else
-            System.out.println(""+atk+type);
+            System.out.println("Damage: "+atk+type);
+        if (Roller.glitched()) {
+            System.out.print("ARMOR ");
+            if (def == 0)
+                System.out.print("CRITICAL ");
+            System.out.println("GLITCH!");
+        }
     }
 }

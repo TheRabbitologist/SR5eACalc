@@ -12,7 +12,7 @@ public class HelpPrinter {
         System.out.println();
         System.out.println("In place of single-letter placeholders, a basic sum can be used.");
         System.out.println("\tExamples: 9+5 or 8 or 4-2-1 or -8+5+4");
-        System.out.println("\tOnly subtraction and addition are supported..");
+        System.out.println("\tOnly subtraction and addition are supported.");
         System.out.println();
         System.out.println("raw <n>: Roll nd6, display results of each roll.");
         System.out.println("dice <n>: Roll nd6, display sum of rolls.");
@@ -30,5 +30,11 @@ public class HelpPrinter {
         System.out.println("\t<damage>: Should be of the form nP or nS for physical or stun damage.");
         System.out.println("\tOutput also indicates damage type.");
         System.out.println("cls: Clear the screen.");
+        System.out.println("quit: Exactly what it says on the tin.");
+        System.out.println();
+        System.out.println("Enter any command to return to prompt...");
+        ShadowrunRoller.getWindow().input();
+        ShadowrunRoller.getWindow().clear();
+        System.out.println("Enter command...");
     }
 }

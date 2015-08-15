@@ -17,6 +17,7 @@ import java.util.Scanner;
 public class ShadowrunRoller {
     private static Window w;
     private static Scanner in;
+    public static Window getWindow() {return w;}
     public static void main(String[] args) {
         w = null;
         if(System.console() == null) {

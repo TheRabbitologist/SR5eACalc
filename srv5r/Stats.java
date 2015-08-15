@@ -72,7 +72,6 @@ public class Stats {
         return rollInitMtrxVR(false);
     }
     public int rollInitMtrxVR(boolean hot) {
-        int dice = (hot?4:3);
-        return getStat(Stat.LOG)+getStat(Stat.INT)+Roller.hits(dice);
+        return getStat(Stat.LOG)+getStat(Stat.INT)+Roller.hits(hot?4:3);
     }
 }

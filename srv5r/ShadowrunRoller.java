@@ -61,6 +61,7 @@ public class ShadowrunRoller {
                     }
                     for(int i = 0; i < Parser.sum(split[1]); ++i)
                         System.out.print(Roller.roll(1) + " ");
+                    System.out.println();
                     break;
                 case "dice":
                     if(split.length == 1) {
@@ -103,6 +104,7 @@ public class ShadowrunRoller {
                     break;
                 case "cls":
                     w.clear();
+                    System.out.println("Enter command...");
                     break;
                 default:
                     System.out.println("Error: Unknown command '" + split[0] + "'.");

@@ -31,15 +31,14 @@ public class ShadowrunRoller {
         try {
         do {
             System.out.println();
-            if(w == null) {
                 System.out.print('#');
+            if(w == null)
                 input = in.nextLine();
-            }
             else {
                 System.out.flush();
                 w.scroll();
                 input = w.input();
-                System.out.println('#'+input);
+                System.out.println(input);
             }
             String[] split = input.split("\\s+");
             if(split.length == 0)
@@ -53,7 +52,6 @@ public class ShadowrunRoller {
                         System.out.println("Error: No parameters found for roll.");
                     else
                         TestHandler.testSimple(test);
-                    System.out.println();
                     break;
                 case "raw":
                     if(split.length == 1) {
@@ -62,7 +60,6 @@ public class ShadowrunRoller {
                     }
                     for(int i = 0; i < Parser.sum(split[1]); ++i)
                         System.out.print(Roller.roll(1) + " ");
-                    System.out.println();
                     break;
                 case "dice":
                     if(split.length == 1) {

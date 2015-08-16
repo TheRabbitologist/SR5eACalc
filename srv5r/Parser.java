@@ -11,15 +11,25 @@ package srv5r;
  */
 public class Parser {
 
+    public static int parseField(String str) {
+        if(str == null || str.isEmpty())
+            return 0;
+        Object o = ShadowrunRoller.getSelf().get(str);
+        if(o instanceof Integer)
+            return (Integer)o;
+        if(o instanceof Double)
+            return (int)Math.floor((Double)o);
+        return Integer.parseInt(str);
+    }
+    
     public static int sum(String str) {
         String values[] = str.split("\\+");
         int retval = 0;
         for (String value : values) {
             String subs[] = value.split("\\-");
-            if(!subs[0].isEmpty())
-                retval += Integer.parseInt(subs[0]);
+            retval += parseField(subs[0]);
             for (int i = 1; i < subs.length; ++i)
-                retval -= Integer.parseInt(subs[i]);
+                retval -= parseField(subs[i]);
         }
         return retval;
     }

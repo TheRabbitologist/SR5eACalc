@@ -21,6 +21,8 @@ public class Stats {
         }
         stat.put(Stat.MAG, 0);
         stat.put(Stat.RES, 0);
+        stat.put(Stat.MXA, 0);
+        stat.put(Stat.MXS, 0);
         ESS = 6;
     }
     public int getStat(Stat s) {

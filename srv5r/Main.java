@@ -10,7 +10,7 @@ import java.awt.GraphicsEnvironment;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class ShadowrunRoller {
+public class Main {
 
     private static Window w;
     private static Scanner in;

@@ -13,7 +13,7 @@ public class Parser {
             return 0;
         if(str.endsWith("d6"))
             return Roller.hits(parseField(str.substring(0,str.length()-2)));
-        Object o = ShadowrunRoller.getSelf().get(str);
+        Object o = Main.getSelf().get(str);
         if(o instanceof Integer)
             return (Integer)o;
         if(o instanceof Double)

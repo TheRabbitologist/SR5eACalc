@@ -44,7 +44,7 @@ public class Window {
     private JTextArea ta;
     public Window() {
         frame = new JFrame();
-        frame.setTitle("Shadowrun v5 Dice Roller");
+        frame.setTitle("Shadowrun v5 Advanced Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         input = new StringBuilder();
         

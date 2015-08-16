@@ -57,8 +57,8 @@ public class HelpPrinter {
         System.out.println("quit: Exactly what it says on the tin.");
         System.out.println();
         System.out.println("Enter any command to return to prompt...");
-        ShadowrunRoller.getWindow().input();
-        ShadowrunRoller.getWindow().clear();
+        Main.getWindow().input();
+        Main.getWindow().clear();
         System.out.println("Enter command...");
     }
 
@@ -92,8 +92,8 @@ public class HelpPrinter {
                 + "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.");
         System.out.println();
         System.out.println("Enter any command to return to prompt...");
-        ShadowrunRoller.getWindow().input();
-        ShadowrunRoller.getWindow().clear();
+        Main.getWindow().input();
+        Main.getWindow().clear();
         System.out.println("Enter command...");
     }
 }

@@ -90,7 +90,7 @@ public class TestHandler {
                 System.out.println("Missed: " + res);
             else if (res == 0) {
                 System.out.println("Grazed");
-                String resp = ShadowrunRoller.getInput("Continue");
+                String resp = Main.getInput("Continue");
                 if (resp.toUpperCase().charAt(0) == 'Y')
                     break;
             } else {
@@ -104,7 +104,7 @@ public class TestHandler {
             if (resA == 0)
                 System.out.print("CRITICAL ");
             System.out.println("GLITCH!");
-            String resp = ShadowrunRoller.getInput("Continue");
+            String resp = Main.getInput("Continue");
             if (resp.toUpperCase().charAt(0) != 'Y')
                 return false;
         }
@@ -114,7 +114,7 @@ public class TestHandler {
                 System.out.print("CRITICAL ");
             System.out.println("GLITCH!");
         }
-        String dmg = ShadowrunRoller.getInput("Damage Parameters");
+        String dmg = Main.getInput("Damage Parameters");
         String[] dp = dmg.split("\\s+");
         if(dp.length < 4) {
             System.out.println("Error: Insufficient parameters.");

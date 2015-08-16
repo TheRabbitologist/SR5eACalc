@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    
+
     public static final String NAME = "Shadowrun 5e Advanced Calculator";
 
     private static Window w;
@@ -39,13 +39,13 @@ public class Main {
             } else
                 System.exit(1);
         }
-        System.out.println(NAME+". Never make a deal with a dragon.");
+        System.out.println(NAME + ". Never make a deal with a dragon.");
         System.out.println("For help, enter 'help'. For copyright info, enter 'copyright'.");
         System.out.println("Enter command...");
-        String input;
+        String input = "";
         in = new Scanner(System.in);
-        try {
-            do {
+        do {
+            try {
                 System.out.println();
                 System.out.print('#');
                 if (w == null)
@@ -67,17 +67,17 @@ public class Main {
                         if (calc.isEmpty())
                             System.out.println("Error: Missing parameters for calculation.");
                         else
-                            System.out.println("Result: "+Parser.sum(calc));
+                            System.out.println("Result: " + Parser.sum(calc));
                         break;
                     case "test":
                         String[] tests = Parser.testOpposed(split);
                         if (tests[1] != null) {
-                            if(tests[1].isEmpty())
+                            if (tests[1].isEmpty())
                                 System.out.println("Error: Missing parameters for opponent.");
                             else
                                 TestHandler.testOpposed(tests[0], tests[1]);
                             break;
-                        } else if(tests[0].isEmpty()) {
+                        } else if (tests[0].isEmpty()) {
                             System.out.println("Error: Missing parameters for test.");
                             break;
                         }
@@ -143,7 +143,7 @@ public class Main {
                         else
                             switch (split[1]) {
                                 case "self":
-                                    System.out.println(split[2]+": "+getSelf().get(split[2]));
+                                    System.out.println(split[2] + ": " + getSelf().get(split[2]));
                                     break;
                                 default:
                                     System.out.println("Error: Unknown register '" + split[1] + "'.");
@@ -164,18 +164,21 @@ public class Main {
                     default:
                         System.out.println("Error: Unknown command '" + split[0] + "'.");
                 }
-            } while (!input.contentEquals("exit") && !input.contentEquals("quit"));
-        } catch (Exception e) {
-            w.clear();
-            System.out.println("FATAL ERROR");
-            e.printStackTrace(System.out);
-            System.out.println();
-            System.out.println("Enter any command to exit...");
-            w.input();
-        }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Invalid number format - " + e.getLocalizedMessage());
+            } catch (Exception e) {
+                w.clear();
+                System.out.println("FATAL ERROR");
+                e.printStackTrace(System.out);
+                System.out.println();
+                System.out.println("Enter any command to exit...");
+                w.input();
+                System.exit(0);
+            }
+        } while (!input.contentEquals("exit") && !input.contentEquals("quit"));
         System.exit(0);
     }
-    
+
     public static String getInput(String query) {
         System.out.print(query + "? ");
         String retval;
@@ -184,7 +187,7 @@ public class Main {
             w.scroll();
             retval = w.input();
             System.out.println(retval);
-        } else 
+        } else
             retval = in.nextLine();
         return retval;
     }

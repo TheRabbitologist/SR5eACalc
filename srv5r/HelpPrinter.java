@@ -9,7 +9,7 @@ package srv5r;
 public class HelpPrinter {
 
     public static void printHelp() {
-        System.out.println("---SR v5 Advanced Calculator Reference---");
+        System.out.println("---" + Main.NAME + " Manual/Reference---");
         System.out.println();
         System.out.println("In place of single-letter placeholders, a basic expression can be used.");
         System.out.println("\tExamples: 9+5 or 8 or 4-2-1 or -8+5*4");
@@ -76,7 +76,7 @@ public class HelpPrinter {
                 + "3. All advertising materials mentioning features or use of this software\n"
                 + "   must display the following acknowledgement:\n"
                 + "   This product includes software developed by the TheRabbitologist.\n"
-                + "4. Neither the name of the Shadowrun v5 Advanced Calculator nor the\n"
+                + "4. Neither the name of the " + Main.NAME + " nor the\n"
                 + "   names of its contributors may be used to endorse or promote products\n"
                 + "   derived from this software without specific prior written permission.\n"
                 + "\n"

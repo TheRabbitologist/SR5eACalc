@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    
+    public static final String NAME = "Shadowrun 5e Advanced Calculator";
 
     private static Window w;
     private static Scanner in;
@@ -37,7 +39,7 @@ public class Main {
             } else
                 System.exit(1);
         }
-        System.out.println("Shadowrun v5 Advanced Calculator. Never make a deal with a dragon.");
+        System.out.println(NAME+". Never make a deal with a dragon.");
         System.out.println("For help, enter 'help'. For copyright info, enter 'copyright'.");
         System.out.println("Enter command...");
         String input;
@@ -170,16 +172,17 @@ public class Main {
         }
         System.exit(0);
     }
-
+    
     public static String getInput(String query) {
         System.out.print(query + "? ");
+        String retval;
         System.out.flush();
         if (w != null) {
             w.scroll();
-            String retval = w.input();
+            retval = w.input();
             System.out.println(retval);
-            return retval;
-        } else
-            return in.nextLine();
+        } else 
+            retval = in.nextLine();
+        return retval;
     }
 }

@@ -45,6 +45,7 @@ public class Window {
     public Window() {
         frame = new JFrame();
         frame.setTitle("Shadowrun v5 Dice Roller");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         input = new StringBuilder();
         
         ta = new JTextArea();

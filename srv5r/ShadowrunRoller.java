@@ -55,6 +55,24 @@ public class ShadowrunRoller {
                 if (split.length == 0)
                     continue;
                 switch (split[0]) {
+                    case "calc":
+                        String calc = "";
+                        for (int i = 1; i < split.length; ++i)
+                            calc += split[i];
+                        if (calc.isEmpty())
+                            System.out.println("Error: No parameters found for calculation.");
+                        else
+                            System.out.println("Result: "+Parser.sum(calc));
+                        break;
+                    case "test":
+                        String[] tests = Parser.testOpposed(split);
+                        if (tests[1] != null) {
+                            if(tests[1].isEmpty())
+                                System.out.println("Error: Missing parameters for opponent.");
+                            else
+                                TestHandler.testOpposed(tests[0], tests[1]);
+                            break;
+                        }
                     case "roll":
                         String test = "";
                         for (int i = 1; i < split.length; ++i)
@@ -80,15 +98,6 @@ public class ShadowrunRoller {
                         }
                         System.out.println("Roll: " + Roller.roll(Parser.sum(split[1])));
                         break;
-                    case "test":
-                        String[] tests = Parser.testOpposed(split);
-                        if (tests[0].isEmpty())
-                            System.out.println("Error: Missing parameters for tester.");
-                        else if (tests[1].isEmpty())
-                            System.out.println("Error: Missing parameters for opponent.");
-                        else
-                            TestHandler.testOpposed(tests[0], tests[1]);
-                        break;
                     case "attack":
                         String[] attack = Parser.testOpposed(split);
                         System.err.println(Arrays.toString(attack));
@@ -96,7 +105,7 @@ public class ShadowrunRoller {
                             System.out.println("Error: Missing parameters for attacker.");
                             continue;
                         }
-                        if (attack[1].isEmpty()) {
+                        if (attack[1] == null || attack[1].isEmpty()) {
                             System.out.println("Error: Missing parameters for defender.");
                             continue;
                         }

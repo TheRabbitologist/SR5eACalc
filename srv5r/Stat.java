@@ -17,7 +17,12 @@ public enum Stat {
     CHA,
     EDG,
     MAG,
-    RES;
+    RES,
+    MXA,
+    MXP,
+    MXR,
+    MXF,
+    MXS;
     public static Stat get(String s) {
         switch(s) {
             case "STR": return STR;
@@ -31,6 +36,11 @@ public enum Stat {
             case "EDG": return EDG;
             case "MAG": return MAG;
             case "RES": return RES;
+            case "MXA": return MXA;
+            case "MXP": return MXP;
+            case "MXR": return MXR;
+            case "MXF": return MXF;
+            case "MXS": return MXS;
             default: return null;
         }
     }

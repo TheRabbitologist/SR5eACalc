@@ -14,6 +14,9 @@ public class HelpPrinter {
         System.out.println("\tSpecial attributes: Same.");
         System.out.println("\tEssence: ESS (rounded down when used in sums).");
         System.out.println("\tLimits: L + first letter of the limit name, ex. LS for the social limit.");
+        System.out.println("\tMatrix Data Processing: MXP");
+        System.out.println("\tMatrix Device Rating: MXR");
+        System.out.println("\tOther Matrix Attributes: MX + first letter of the attribute name.");
         System.out.println();
         System.out.println("raw <n>: Roll nd6, display results of each roll.");
         System.out.println("dice <n>: Roll nd6, display sum of rolls.");

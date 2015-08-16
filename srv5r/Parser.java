@@ -29,11 +29,22 @@ public class Parser {
         int retval = 0;
         for (String value : values) {
             String subs[] = value.split("\\-");
-            retval += parseField(subs[0]);
+            retval += sumHandle(subs[0]);
             for (int i = 1; i < subs.length; ++i)
-                retval -= parseField(subs[i]);
+                retval -= sumHandle(subs[i]);
         }
         return retval;
+    }
+    
+    private static int sumHandle(String s) {
+        int mindex = s.indexOf('*');
+        if(mindex != -1) {
+            String mults[] = s.split("\\*");
+            int retval = parseField(mults[0]);
+            for (int i = 1; i < mults.length; ++i)
+                retval *= parseField(mults[i]);
+            return retval;
+        } else return parseField(s);
     }
 
     public static int[] testSingle(String str) {

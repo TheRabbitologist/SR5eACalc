@@ -65,7 +65,7 @@ public class Main {
                         for (int i = 1; i < split.length; ++i)
                             calc += split[i];
                         if (calc.isEmpty())
-                            System.out.println("Error: No parameters found for calculation.");
+                            System.out.println("Error: Missing parameters for calculation.");
                         else
                             System.out.println("Result: "+Parser.sum(calc));
                         break;
@@ -77,19 +77,22 @@ public class Main {
                             else
                                 TestHandler.testOpposed(tests[0], tests[1]);
                             break;
+                        } else if(tests[0].isEmpty()) {
+                            System.out.println("Error: Missing parameters for test.");
+                            break;
                         }
                     case "roll":
                         String test = "";
                         for (int i = 1; i < split.length; ++i)
                             test += split[i];
                         if (test.isEmpty())
-                            System.out.println("Error: No parameters found for roll.");
+                            System.out.println("Error: Missing parameters for roll.");
                         else
                             TestHandler.testSimple(test);
                         break;
                     case "raw":
                         if (split.length == 1) {
-                            System.out.println("Error: No dice count found for roll.");
+                            System.out.println("Error: Missing dice count for roll.");
                             continue;
                         }
                         for (int i = 0; i < Parser.sum(split[1]); ++i)
@@ -98,7 +101,7 @@ public class Main {
                         break;
                     case "dice":
                         if (split.length == 1) {
-                            System.out.println("Error: No dice count found for roll.");
+                            System.out.println("Error: Missing dice count for roll.");
                             continue;
                         }
                         System.out.println("Roll: " + Roller.roll(Parser.sum(split[1])));
@@ -118,13 +121,13 @@ public class Main {
                         break;
                     case "damage":
                         if (split.length < 5)
-                            System.out.println("Error: Insufficient parameters");
+                            System.out.println("Error: Insufficient parameters.");
                         else
                             TestHandler.damage(0, split[1], split[2], split[3], split[4]);
                         break;
                     case "set":
                         if (split.length < 2)
-                            System.out.println("Error: Insufficient parameters");
+                            System.out.println("Error: Missing register for set operation.");
                         else
                             switch (split[1]) {
                                 case "self":
@@ -136,7 +139,7 @@ public class Main {
                         break;
                     case "get":
                         if (split.length < 2)
-                            System.out.println("Error: Insufficient parameters");
+                            System.out.println("Error: Missing register for get operation.");
                         else
                             switch (split[1]) {
                                 case "self":

@@ -14,6 +14,8 @@ public class Parser {
     public static int parseField(String str) {
         if(str == null || str.isEmpty())
             return 0;
+        if(str.endsWith("d6"))
+            return Roller.hits(parseField(str.substring(0,str.length()-2)));
         Object o = ShadowrunRoller.getSelf().get(str);
         if(o instanceof Integer)
             return (Integer)o;
@@ -69,16 +71,15 @@ public class Parser {
 
     public static String[] testOpposed(String[] split, int start) {
         String retval[] = new String[2];
+        retval[0] = "";
         byte w = 0;
         for (int i = start; i < split.length; ++i) {
             if (split[i].contentEquals("v.")) {
                 w = 1;
+                retval[1] = "";
                 continue;
             }
-            if(retval[w] == null)
-                retval[w] = split[i];
-            else
-                retval[w] += split[i];
+            retval[w] += split[i];
         }
         return retval;
     }

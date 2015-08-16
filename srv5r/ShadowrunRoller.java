@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2015 TheRabbitologist.
+ * This file is licensed under the 4-clause BSD License.
+ *
+ * For more info, see LICENSE.txt.
  */
 package srv5r;
 
@@ -36,7 +37,9 @@ public class ShadowrunRoller {
             } else
                 System.exit(1);
         }
-        System.out.println("Shadowrun v5 Dice Roller. Never make a deal with a dragon.");
+        System.out.println("Shadowrun v5 Advanced Calculator. Never make a deal with a dragon.");
+        System.out.println("For help, enter 'help'. For copyright info, enter 'copyright'.");
+        System.out.println("Enter command...");
         String input;
         in = new Scanner(System.in);
         try {
@@ -144,6 +147,10 @@ public class ShadowrunRoller {
                     case "help":
                         w.clear();
                         HelpPrinter.printHelp();
+                        break;
+                    case "copyright":
+                        w.clear();
+                        HelpPrinter.printCopyright();
                         break;
                     case "cls":
                         w.clear();

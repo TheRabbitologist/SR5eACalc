@@ -1,8 +1,15 @@
+/*
+ * Copyright (c) 2015 TheRabbitologist.
+ * This file is licensed under the 4-clause BSD License.
+ *
+ * For more info, see LICENSE.txt.
+ */
 package srv5r;
 
 public class HelpPrinter {
+
     public static void printHelp() {
-        System.out.println("---Command Reference---");
+        System.out.println("---SR v5 Advanced Calculator Reference---");
         System.out.println();
         System.out.println("In place of single-letter placeholders, a basic expression can be used.");
         System.out.println("\tExamples: 9+5 or 8 or 4-2-1 or -8+5*4");
@@ -48,6 +55,41 @@ public class HelpPrinter {
         System.out.println("\tThis includes limits.");
         System.out.println("cls: Clear the screen.");
         System.out.println("quit: Exactly what it says on the tin.");
+        System.out.println();
+        System.out.println("Enter any command to return to prompt...");
+        ShadowrunRoller.getWindow().input();
+        ShadowrunRoller.getWindow().clear();
+        System.out.println("Enter command...");
+    }
+
+    public static void printCopyright() {
+        System.out.println("Copyright (c) 2015 TheRabbitologist\n"
+                + "All rights reserved.\n"
+                + "\n"
+                + "Redistribution and use in source and binary forms, with or without\n"
+                + "modification, are permitted provided that the following conditions are met:\n"
+                + "1. Redistributions of source code must retain the above copyright\n"
+                + "   notice, this list of conditions and the following disclaimer.\n"
+                + "2. Redistributions in binary form must reproduce the above copyright\n"
+                + "   notice, this list of conditions and the following disclaimer in the\n"
+                + "   documentation and/or other materials provided with the distribution.\n"
+                + "3. All advertising materials mentioning features or use of this software\n"
+                + "   must display the following acknowledgement:\n"
+                + "   This product includes software developed by the TheRabbitologist.\n"
+                + "4. Neither the name of the Shadowrun v5 Advanced Calculator nor the\n"
+                + "   names of its contributors may be used to endorse or promote products\n"
+                + "   derived from this software without specific prior written permission.\n"
+                + "\n"
+                + "THIS SOFTWARE IS PROVIDED BY THERABBITOLOGIST ''AS IS'' AND ANY\n"
+                + "EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n"
+                + "WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n"
+                + "DISCLAIMED. IN NO EVENT SHALL THERABBITOLOGIST BE LIABLE FOR ANY\n"
+                + "DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n"
+                + "(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n"
+                + "LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n"
+                + "ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
+                + "(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n"
+                + "SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.");
         System.out.println();
         System.out.println("Enter any command to return to prompt...");
         ShadowrunRoller.getWindow().input();

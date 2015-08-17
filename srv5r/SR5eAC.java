@@ -186,16 +186,8 @@ public class SR5eAC {
                         if (split.length < 2)
                             System.out.println("Error: Missing parameter for save location.");
                         f = new File(System.getProperty("user.home")+'/'+merge(split,true));
-                        if(f.exists()) {
-                            if(!f.canWrite()) {
-                                System.out.println("Error: Cannot write to file.");
-                                break;
-                            }
-                        } else try {
-                            if(!f.createNewFile()) {
-                                System.out.println("Error: Cannot create new file.");
-                                break;
-                            }
+                        if(!f.exists()) try {
+                            f.createNewFile();
                         } catch (IOException e) {
                             System.out.println("Error: Cannot create new file - " + e.getLocalizedMessage());
                             break;
@@ -215,10 +207,6 @@ public class SR5eAC {
                             break;
                         }
                         f = new File(System.getProperty("user.home")+'/'+merge(split,true));
-                        if(!f.canRead()) {
-                            System.out.println("Error: Cannot read from file.");
-                            break;
-                        } 
                         try (FileInputStream fis = new FileInputStream(f)) {
                             Scanner s = new Scanner(fis);
                             elephant.load(s);

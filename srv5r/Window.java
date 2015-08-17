@@ -32,10 +32,6 @@ class TextAreaOutputStream extends OutputStream {
     }  
 }
 
-/**
- *
- * @author amayas
- */
 public class Window {
     private JFrame frame;
     private JTextField jtf;
@@ -44,7 +40,7 @@ public class Window {
     private JTextArea ta;
     public Window() {
         frame = new JFrame();
-        frame.setTitle(Main.NAME);
+        frame.setTitle(SR5eAC.NAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         input = new StringBuilder();
         

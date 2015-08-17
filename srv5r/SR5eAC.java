@@ -13,11 +13,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class SR5eAC {
 
     public static final String NAME = "Shadowrun 5e Advanced Calculator";
 
@@ -252,7 +251,7 @@ public class Main {
                 System.out.println();
                 System.out.println("Enter any command to exit...");
                 w.input();
-                System.exit(0);
+                System.exit(1);
             }
         } while (!input.contentEquals("exit") && !input.contentEquals("quit"));
         System.exit(0);

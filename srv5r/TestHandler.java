@@ -13,7 +13,7 @@ public class TestHandler {
         int res;
         if (testvals.length == 3) {
             res = Roller.test(testvals[0], testvals[1], testvals[2], ptl);
-            Main.setMisses(Math.min(testvals[0], testvals[1]) - res);
+            SR5eAC.setMisses(Math.min(testvals[0], testvals[1]) - res);
             if (res >= 0)
                 System.out.println("Passed: +" + res);
             else
@@ -22,10 +22,10 @@ public class TestHandler {
         } else {
             if (testvals.length == 2) {
                 res = Roller.hits(testvals[0], testvals[1], ptl);
-                Main.setMisses(Math.min(testvals[0], testvals[1]) - res);
+                SR5eAC.setMisses(Math.min(testvals[0], testvals[1]) - res);
             } else {
                 res = Roller.hits(testvals[0], ptl);
-                Main.setMisses(testvals[0] - res);
+                SR5eAC.setMisses(testvals[0] - res);
             }
             System.out.println("Hits: " + res);
         }
@@ -44,10 +44,10 @@ public class TestHandler {
         boolean glitchA, glitchB;
         if (atk.length >= 2) {
             resA = Roller.hits(atk[0], atk[1], ptl);
-            Main.setMisses(Math.min(atk[0], atk[1]) - resA);
+            SR5eAC.setMisses(Math.min(atk[0], atk[1]) - resA);
         } else {
             resA = Roller.hits(atk[0], ptl);
-            Main.setMisses(atk[0] - resA);
+            SR5eAC.setMisses(atk[0] - resA);
         }
         glitchA = Roller.glitched();
         if (def.length >= 2)
@@ -83,10 +83,10 @@ public class TestHandler {
         boolean glitchA, glitchB;
         if (atk.length >= 2) {
             resA = Roller.hits(atk[0], atk[1]);
-            Main.setMisses(Math.min(atk[0], atk[1]) - resA);
+            SR5eAC.setMisses(Math.min(atk[0], atk[1]) - resA);
         } else {
             resA = Roller.hits(atk[0]);
-            Main.setMisses(atk[0] - resA);
+            SR5eAC.setMisses(atk[0] - resA);
         }
         glitchA = Roller.glitched();
         if (def.length >= 2)
@@ -113,10 +113,10 @@ public class TestHandler {
                 System.out.print("CRITICAL ");
             System.out.println("GLITCH!");
         }
-        String resp = Main.getInput("Continue");
+        String resp = SR5eAC.getInput("Continue");
         if (resp.toUpperCase().charAt(0) != 'Y')
             return res;
-        String dmg = Main.getInput("Damage Parameters");
+        String dmg = SR5eAC.getInput("Damage Parameters");
         String[] dp = dmg.split("\\s+");
         if (dp.length < 4) {
             System.out.println("Error: Insufficient parameters.");
@@ -139,7 +139,7 @@ public class TestHandler {
         } else
             type = 'S';
         int def = Roller.hits(arm + bod);
-        Main.setMisses(arm + bod - def);
+        SR5eAC.setMisses(arm + bod - def);
         atk -= def;
         if (atk <= 0)
             System.out.println("Blocked: " + (atk + def) + type + " v. " + def);

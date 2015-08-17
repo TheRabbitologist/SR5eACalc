@@ -18,10 +18,10 @@ public class Parser {
         if(str.endsWith("?g"))
             return (Roller.glitched()?parseField(str.substring(0,str.length()-2)):0);
         if(str.toUpperCase().contentEquals("LAST"))
-            return Main.getResult();
+            return SR5eAC.getResult();
         if(str.toUpperCase().contentEquals("MISS"))
-            return Main.getMisses();
-        Object o = Main.getSelf().get(str);
+            return SR5eAC.getMisses();
+        Object o = SR5eAC.getSelf().get(str);
         if(o instanceof Integer)
             return (Integer)o;
         if(o instanceof Double)

@@ -17,6 +17,7 @@ public class Main {
     private static Window w;
     private static Scanner in;
     private static Memory elephant;
+    private static int result, misses;
 
     public static Memory getMemory() {
         return elephant;
@@ -29,9 +30,23 @@ public class Main {
     public static Window getWindow() {
         return w;
     }
+    
+    public static int getResult() {
+        return result;
+    }
+    
+    public static int getMisses() {
+        return misses;
+    }
+    
+    public static void setMisses(int val) {
+        misses = val;
+    }
 
     public static void main(String[] args) {
         w = null;
+        result = 0;
+        misses = 0;
         elephant = new Memory();
         if (System.console() == null) {
             if (!GraphicsEnvironment.isHeadless()) {
@@ -75,7 +90,7 @@ public class Main {
                             if (tests[1].isEmpty())
                                 System.out.println("Error: Missing parameters for opponent.");
                             else
-                                TestHandler.testOpposed(tests[0], tests[1]);
+                                result = TestHandler.testOpposed(tests[0], tests[1]);
                             break;
                         } else if (tests[0].isEmpty()) {
                             System.out.println("Error: Missing parameters for test.");
@@ -88,7 +103,7 @@ public class Main {
                         if (test.isEmpty())
                             System.out.println("Error: Missing parameters for roll.");
                         else
-                            TestHandler.testSimple(test);
+                            result = TestHandler.testSimple(test);
                         break;
                     case "raw":
                         if (split.length == 1) {
@@ -99,12 +114,24 @@ public class Main {
                             System.out.print(Roller.roll(1) + " ");
                         System.out.println();
                         break;
+                    case "reroll":
+                        if(misses == 0) {
+                            System.out.println("Error: No second chance needed.");
+                            break;
+                        }
+                        System.out.print("Second chance: ");
+                        int sc = Roller.hits(misses);
+                        misses = misses-sc;
+                        result += sc;
+                        System.out.println(result);
+                        break;
                     case "dice":
                         if (split.length == 1) {
                             System.out.println("Error: Missing dice count for roll.");
                             continue;
                         }
-                        System.out.println("Roll: " + Roller.roll(Parser.sum(split[1])));
+                        result = Roller.roll(Parser.sum(split[1]));
+                        System.out.println("Roll: " + result);
                         break;
                     case "attack":
                         String[] attack = Parser.testOpposed(split);
@@ -117,13 +144,13 @@ public class Main {
                             System.out.println("Error: Missing parameters for defender.");
                             continue;
                         }
-                        TestHandler.attack(attack[0], attack[1]);
+                        result = TestHandler.attack(attack[0], attack[1]);
                         break;
                     case "damage":
                         if (split.length < 5)
                             System.out.println("Error: Insufficient parameters.");
                         else
-                            TestHandler.damage(0, split[1], split[2], split[3], split[4]);
+                            result = TestHandler.damage(0, split[1], split[2], split[3], split[4]);
                         break;
                     case "set":
                         if (split.length < 2)

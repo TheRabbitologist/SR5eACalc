@@ -84,9 +84,7 @@ public class Main {
                 File f;
                 switch (split[0]) {
                     case "calc":
-                        String calc = "";
-                        for (int i = 1; i < split.length; ++i)
-                            calc += split[i];
+                        String calc = merge(split,false);
                         if (calc.isEmpty())
                             System.out.println("Error: Missing parameters for calculation.");
                         else
@@ -105,9 +103,7 @@ public class Main {
                             break;
                         }
                     case "roll":
-                        String test = "";
-                        for (int i = 1; i < split.length; ++i)
-                            test += split[i];
+                        String test = merge(split,false);
                         if (test.isEmpty())
                             System.out.println("Error: Missing parameters for roll.");
                         else
@@ -187,7 +183,7 @@ public class Main {
                     case "save":
                         if (split.length < 2)
                             System.out.println("Error: Missing parameter for save location.");
-                        f = new File(merge(split,true));
+                        f = new File(System.getProperty("user.home")+'/'+merge(split,true));
                         if(f.exists()) {
                             if(!f.canWrite()) {
                                 System.out.println("Error: Cannot write to file.");
@@ -205,6 +201,7 @@ public class Main {
                         try (FileOutputStream fos = new FileOutputStream(f)) {
                             BufferedWriter fw = new BufferedWriter(new OutputStreamWriter(fos));
                             elephant.save(fw);
+                            fw.flush();
                             fos.close();
                         } catch (IOException e) {
                             System.out.println("Error: Cannot write to file - " + e.getLocalizedMessage());
@@ -215,7 +212,7 @@ public class Main {
                             System.out.println("Error: Missing parameter for load location.");
                             break;
                         }
-                        f = new File(merge(split,true));
+                        f = new File(System.getProperty("user.home")+'/'+merge(split,true));
                         if(!f.canRead()) {
                             System.out.println("Error: Cannot read from file.");
                             break;
@@ -227,10 +224,6 @@ public class Main {
                         } catch (IOException e) {
                             System.out.println("Error: Cannot read from file - " + e.getLocalizedMessage());
                         } 
-                        break;
-                    case "cwd":
-                    case "pwd":
-                        System.out.println(System.getProperty("user.dir"));
                         break;
                     case "help":
                         w.clear();
@@ -278,7 +271,7 @@ public class Main {
     private static String merge(String[] strings, boolean addspace) {
         String retval = "";
         for (int i = 1; i < strings.length; ++i)
-            retval += (addspace?" ":"")+strings[i];
+            retval += strings[i]+((addspace&&i!=1)?" ":"");
         return retval;
     }
 }

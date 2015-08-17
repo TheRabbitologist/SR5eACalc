@@ -29,6 +29,7 @@ public class HelpPrinter {
         System.out.println("\tOther Matrix Attributes: MX + first letter of the attribute name.");
         System.out.println("\tResult of the last roll: LAST");
         System.out.println("\tNumber of misses from the last roll: MISS");
+        System.out.println("\tArmor value: ARMOR");
         System.out.println();
         System.out.println("raw <n>: Roll nd6, display results of each roll.");
         System.out.println("dice <n>: Roll nd6, display sum of rolls.");
@@ -59,6 +60,8 @@ public class HelpPrinter {
         System.out.println("\tRemember that v can absolutely be another attribute, useful for technomancers.");
         System.out.println("get self <attribute>: Recall an attribute's value.");
         System.out.println("\tThis includes limits.");
+        System.out.println("save <file>: Save the set of attributes to a file in your home directory.");
+        System.out.println("load <file>: Load a previously saved set of attriubtes.");
         System.out.println("cls: Clear the screen.");
         System.out.println("quit: Exactly what it says on the tin.");
         System.out.println();

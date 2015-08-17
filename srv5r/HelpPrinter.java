@@ -46,6 +46,9 @@ public class HelpPrinter {
         System.out.println("\ta[l] v. b: Attempt an opposed test with the left side limited.");
         System.out.println("\ta[l] v. b[L]: Attempt an opposed test, each side with their own limit.");
         System.out.println("\tGlitch status is printed in all cases where applicable.");
+        System.out.println("test-ro6 <test>: Perform a success or opposed test with Rule of 6 rolling rules.");
+        System.out.println("\tRule of 6 is primarily used with the edge benefit Push The Limit.");
+        System.out.println("\tNote that this command neither ignores limits nor adds edge rating.");
         System.out.println("reroll: Apply a second chance effect to the last roll.");
         System.out.println("\tRerolls all the dice from the last roll that did not result in a hit.");
         System.out.println("\tFor opposed tests, rerolls the dice of the left hand side.");

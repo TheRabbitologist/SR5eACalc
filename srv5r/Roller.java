@@ -13,13 +13,13 @@ public class Roller {
     private static Random r = new Random();
     
     public static boolean glitched() {return glitch;}
-    public static int ptl(int dice) {
+    public static int hits(int dice, boolean ro6) {
         int hits = 0;
         int zeroes = 0;
         glitch = false;
         for(int i = 0; i < dice; ++i) {
             int roll = r.nextInt(6);
-            if(roll == 5) {
+            if(ro6 && roll == 5) {
                 ++hits;
                 roll = r.nextInt(6);
             }
@@ -33,22 +33,13 @@ public class Roller {
         return hits;
     }
     public static int hits(int dice) {
-        int hits = 0;
-        int zeroes = 0;
-        glitch = false;
-        for(int i = 0; i < dice; ++i) {
-            int roll = r.nextInt(6);
-            if(roll >= 4)
-                ++hits;
-            else if(roll == 0)
-                ++zeroes;
-        }
-        if(zeroes > dice/2)
-            glitch = true;
-        return hits;
+        return hits(dice,false);
     }
     public static int hits(int dice, int limit) {
-        return Math.min(hits(dice), limit);
+        return hits(dice,limit,false);
+    }
+    public static int hits(int dice, int limit, boolean ro6) {
+        return Math.min(hits(dice, ro6), limit);
     }
     public static int roll(int dice) {
         int val = 0;
@@ -57,9 +48,18 @@ public class Roller {
         return val;
     }
     public static int test(int dice, int limit, int thresh) {
-        return hits(dice,limit)-thresh;
+        return test(dice,limit,thresh,false);
+    }
+    public static int test(int dice, int limit, int thresh, boolean ro6) {
+        return hits(dice,limit,ro6)-thresh;
     }
     public static int test(int diceA, int limitA, int diceB, int limitB) {
-        return hits(diceA,limitA)-hits(diceB,limitB);
+        return test(diceA, limitA, diceB, limitB, false, false);
+    }
+    public static int test(int diceA, int limitA, int diceB, int limitB, boolean ro6A) {
+        return test(diceA, limitA, diceB, limitB, ro6A, false);
+    }
+    public static int test(int diceA, int limitA, int diceB, int limitB, boolean ro6A, boolean ro6B) {
+        return hits(diceA,limitA,ro6A)-hits(diceB,limitB,ro6B);
     }
 }

@@ -67,6 +67,7 @@ public class Main {
         String input = "";
         in = new Scanner(System.in);
         do {
+            boolean ptl = false;
             try {
                 System.out.println();
                 System.out.print('#');
@@ -90,13 +91,15 @@ public class Main {
                         else
                             System.out.println("Result: " + Parser.sum(calc));
                         break;
+                    case "test-ro6":
+                        ptl = true;
                     case "test":
                         String[] tests = Parser.testOpposed(split);
                         if (tests[1] != null) {
                             if (tests[1].isEmpty())
                                 System.out.println("Error: Missing parameters for opponent.");
                             else
-                                result = TestHandler.testOpposed(tests[0], tests[1]);
+                                result = TestHandler.testOpposed(tests[0], tests[1], ptl);
                             break;
                         } else if (tests[0].isEmpty()) {
                             System.out.println("Error: Missing parameters for test.");
@@ -107,7 +110,7 @@ public class Main {
                         if (test.isEmpty())
                             System.out.println("Error: Missing parameters for roll.");
                         else
-                            result = TestHandler.testSimple(test);
+                            result = TestHandler.testSimple(test, ptl);
                         break;
                     case "raw":
                         if (split.length == 1) {
@@ -124,7 +127,7 @@ public class Main {
                             break;
                         }
                         System.out.print("Second chance: ");
-                        int sc = Roller.hits(misses);
+                        int sc = Roller.hits(misses,false);
                         misses = misses - sc;
                         result += sc;
                         System.out.println(result);

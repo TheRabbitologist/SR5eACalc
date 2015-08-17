@@ -8,11 +8,11 @@ package srv5r;
 
 public class TestHandler {
 
-    public static int testSimple(String input) {
+    public static int testSimple(String input, boolean ptl) {
         int[] testvals = Parser.testSingle(input);
         int res;
         if (testvals.length == 3) {
-            res = Roller.test(testvals[0], testvals[1], testvals[2]);
+            res = Roller.test(testvals[0], testvals[1], testvals[2], ptl);
             Main.setMisses(Math.min(testvals[0], testvals[1]) - res);
             if (res >= 0)
                 System.out.println("Passed: +" + res);
@@ -21,10 +21,10 @@ public class TestHandler {
             res = testvals[2] + res; //For glitch testing.
         } else {
             if (testvals.length == 2) {
-                res = Roller.hits(testvals[0], testvals[1]);
+                res = Roller.hits(testvals[0], testvals[1], ptl);
                 Main.setMisses(Math.min(testvals[0], testvals[1]) - res);
             } else {
-                res = Roller.hits(testvals[0]);
+                res = Roller.hits(testvals[0], ptl);
                 Main.setMisses(testvals[0] - res);
             }
             System.out.println("Hits: " + res);
@@ -37,16 +37,16 @@ public class TestHandler {
         return res;
     }
 
-    public static int testOpposed(String attack, String target) {
+    public static int testOpposed(String attack, String target, boolean ptl) {
         int[] atk = Parser.testSingle(attack);
         int[] def = Parser.testSingle(target);
         int resA, resB, res;
         boolean glitchA, glitchB;
         if (atk.length >= 2) {
-            resA = Roller.hits(atk[0], atk[1]);
+            resA = Roller.hits(atk[0], atk[1], ptl);
             Main.setMisses(Math.min(atk[0], atk[1]) - resA);
         } else {
-            resA = Roller.hits(atk[0]);
+            resA = Roller.hits(atk[0], ptl);
             Main.setMisses(atk[0] - resA);
         }
         glitchA = Roller.glitched();

@@ -22,7 +22,8 @@ public enum Stat {
     MXP,
     MXR,
     MXF,
-    MXS;
+    MXS,
+    ARMOR;
     public static Stat get(String s) {
         switch(s) {
             case "STR": return STR;
@@ -41,6 +42,7 @@ public enum Stat {
             case "MXR": return MXR;
             case "MXF": return MXF;
             case "MXS": return MXS;
+            case "ARMOR": return ARMOR;
             default: return null;
         }
     }

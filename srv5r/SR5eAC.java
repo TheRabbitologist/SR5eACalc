@@ -121,7 +121,7 @@ public class SR5eAC {
                         System.out.println();
                         break;
                     case "reroll":
-                        if (misses == 0) {
+                        if (misses <= 0) {
                             System.out.println("Error: No second chance needed.");
                             break;
                         }

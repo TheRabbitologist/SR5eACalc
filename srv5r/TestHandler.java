@@ -13,7 +13,7 @@ public class TestHandler {
         int res;
         if (testvals.length == 3) {
             res = Roller.test(testvals[0], testvals[1], testvals[2]);
-                Main.setMisses(Math.min(testvals[0], testvals[1])-res);
+            Main.setMisses(Math.min(testvals[0], testvals[1]) - res);
             if (res >= 0)
                 System.out.println("Passed: +" + res);
             else
@@ -22,10 +22,10 @@ public class TestHandler {
         } else {
             if (testvals.length == 2) {
                 res = Roller.hits(testvals[0], testvals[1]);
-                Main.setMisses(Math.min(testvals[0], testvals[1])-res);
+                Main.setMisses(Math.min(testvals[0], testvals[1]) - res);
             } else {
                 res = Roller.hits(testvals[0]);
-                Main.setMisses(testvals[0]-res);
+                Main.setMisses(testvals[0] - res);
             }
             System.out.println("Hits: " + res);
         }
@@ -44,10 +44,10 @@ public class TestHandler {
         boolean glitchA, glitchB;
         if (atk.length >= 2) {
             resA = Roller.hits(atk[0], atk[1]);
-            Main.setMisses(Math.min(atk[0], atk[1])-resA);
+            Main.setMisses(Math.min(atk[0], atk[1]) - resA);
         } else {
             resA = Roller.hits(atk[0]);
-            Main.setMisses(atk[0]-resA);
+            Main.setMisses(atk[0] - resA);
         }
         glitchA = Roller.glitched();
         if (def.length >= 2)
@@ -83,40 +83,29 @@ public class TestHandler {
         boolean glitchA, glitchB;
         if (atk.length >= 2) {
             resA = Roller.hits(atk[0], atk[1]);
-            Main.setMisses(Math.min(atk[0], atk[1])-resA);
+            Main.setMisses(Math.min(atk[0], atk[1]) - resA);
         } else {
             resA = Roller.hits(atk[0]);
-            Main.setMisses(atk[0]-resA);
+            Main.setMisses(atk[0] - resA);
         }
         glitchA = Roller.glitched();
-        if (def.length >= 2) 
+        if (def.length >= 2)
             resB = Roller.hits(def[0], def[1]);
         else
             resB = Roller.hits(def[0]);
         glitchB = Roller.glitched();
         res = resA - resB;
-        while (true) {
-            if (res < 0)
-                System.out.println("Missed: " + res);
-            else if (res == 0) {
-                System.out.println("Grazed");
-                String resp = Main.getInput("Continue");
-                if (resp.toUpperCase().charAt(0) == 'Y')
-                    break;
-            } else {
-                System.out.println("Hit: +" + res);
-                break;
-            }
-            return res;
-        }
+        if (res < 0)
+            System.out.println("Missed: " + res);
+        else if (res == 0)
+            System.out.println("Grazed");
+        else
+            System.out.println("Hit: +" + res);
         if (glitchA) {
             System.out.print("ATTACKING ");
             if (resA == 0)
                 System.out.print("CRITICAL ");
             System.out.println("GLITCH!");
-            String resp = Main.getInput("Continue");
-            if (resp.toUpperCase().charAt(0) != 'Y')
-                return res;
         }
         if (glitchB) {
             System.out.print("DEFENDING ");
@@ -124,41 +113,44 @@ public class TestHandler {
                 System.out.print("CRITICAL ");
             System.out.println("GLITCH!");
         }
+        String resp = Main.getInput("Continue");
+        if (resp.toUpperCase().charAt(0) != 'Y')
+            return res;
         String dmg = Main.getInput("Damage Parameters");
         String[] dp = dmg.split("\\s+");
-        if(dp.length < 4) {
+        if (dp.length < 4) {
             System.out.println("Error: Insufficient parameters.");
             return res;
         }
         return damage(res, dp[0], dp[1], dp[2], dp[3]);
     }
-    
+
     public static int damage(int res, String dmg, String ap, String armor, String body) {
-        int atk = Parser.sum(dmg.substring(0,dmg.length()-1))+res;
+        int atk = Parser.sum(dmg.substring(0, dmg.length() - 1)) + res;
         int arm = Parser.sum(armor);
         int bod = Parser.sum(body);
-        if(arm > 0)
-            arm = Math.max(0,arm+Parser.sum(ap));
+        if (arm > 0)
+            arm = Math.max(0, arm + Parser.sum(ap));
         char type;
-        if(atk >= arm) {
-            type = Character.toUpperCase(dmg.charAt(dmg.length()-1));
-            if(type != 'P' && type != 'S')
+        if (atk >= arm) {
+            type = Character.toUpperCase(dmg.charAt(dmg.length() - 1));
+            if (type != 'P' && type != 'S')
                 type = '?';
         } else
             type = 'S';
-        int def = Roller.hits(arm+bod);
-        Main.setMisses(arm+bod-def);
+        int def = Roller.hits(arm + bod);
+        Main.setMisses(arm + bod - def);
         atk -= def;
-        if(atk <= 0)
-            System.out.println("Blocked: "+(atk+def)+type+" v. "+def);
+        if (atk <= 0)
+            System.out.println("Blocked: " + (atk + def) + type + " v. " + def);
         else
-            System.out.println("Damage: "+atk+type);
+            System.out.println("Damage: " + atk + type);
         if (Roller.glitched()) {
             System.out.print("ARMOR ");
             if (def == 0)
                 System.out.print("CRITICAL ");
             System.out.println("GLITCH!");
         }
-        return def;
+        return 0;
     }
 }

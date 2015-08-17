@@ -8,13 +8,19 @@ package srv5r;
 
 public class Parser {
 
-    public static int parseField(String str) {
+    private static int parseField(String str) {
         if(str == null || str.isEmpty())
             return 0;
         if(str.endsWith("d6"))
             return Roller.hits(parseField(str.substring(0,str.length()-2)));
+        if(str.endsWith("r6"))
+            return Roller.ptl(parseField(str.substring(0,str.length()-2)));
         if(str.endsWith("?g"))
             return (Roller.glitched()?parseField(str.substring(0,str.length()-2)):0);
+        if(str.toUpperCase().contentEquals("LAST"))
+            return Main.getResult();
+        if(str.toUpperCase().contentEquals("MISS"))
+            return Main.getMisses();
         Object o = Main.getSelf().get(str);
         if(o instanceof Integer)
             return (Integer)o;

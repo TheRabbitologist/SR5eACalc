@@ -13,6 +13,25 @@ public class Roller {
     private static Random r = new Random();
     
     public static boolean glitched() {return glitch;}
+    public static int ptl(int dice) {
+        int hits = 0;
+        int zeroes = 0;
+        glitch = false;
+        for(int i = 0; i < dice; ++i) {
+            int roll = r.nextInt(6);
+            if(roll == 5) {
+                ++hits;
+                roll = r.nextInt(6);
+            }
+            if(roll >= 4)
+                ++hits;
+            else if(roll == 0)
+                ++zeroes;
+        }
+        if(zeroes > dice/2)
+            glitch = true;
+        return hits;
+    }
     public static int hits(int dice) {
         int hits = 0;
         int zeroes = 0;

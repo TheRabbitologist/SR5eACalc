@@ -16,6 +16,7 @@ public class HelpPrinter {
         System.out.println("\tOnly addition, subtraction, and multiplication operations are supported.");
         System.out.println("\tMuliplication operations are, of course, done before addition and subtraction.");
         System.out.println("\tnd6 may be embedded in expressions to include a hit roll, ex. 5000+100*4d6");
+        System.out.println("\tnr6 may similarly be used for a Rule of 6 roll, for Push The Limit.");
         System.out.println();
         System.out.println("Certain attributes and such can be stored and recalled.");
         System.out.println("These values can be used within expressions and tests, ex. CHA+WIL+2");
@@ -26,6 +27,8 @@ public class HelpPrinter {
         System.out.println("\tMatrix Data Processing: MXP");
         System.out.println("\tMatrix Device Rating: MXR");
         System.out.println("\tOther Matrix Attributes: MX + first letter of the attribute name.");
+        System.out.println("\tResult of the last roll: LAST");
+        System.out.println("\tNumber of misses from the last roll: MISS");
         System.out.println();
         System.out.println("raw <n>: Roll nd6, display results of each roll.");
         System.out.println("dice <n>: Roll nd6, display sum of rolls.");

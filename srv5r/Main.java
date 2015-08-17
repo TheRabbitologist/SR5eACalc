@@ -7,6 +7,13 @@
 package srv5r;
 
 import java.awt.GraphicsEnvironment;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -30,15 +37,15 @@ public class Main {
     public static Window getWindow() {
         return w;
     }
-    
+
     public static int getResult() {
         return result;
     }
-    
+
     public static int getMisses() {
         return misses;
     }
-    
+
     public static void setMisses(int val) {
         misses = val;
     }
@@ -74,6 +81,7 @@ public class Main {
                 String[] split = input.split("\\s+");
                 if (split.length == 0)
                     continue;
+                File f;
                 switch (split[0]) {
                     case "calc":
                         String calc = "";
@@ -115,13 +123,13 @@ public class Main {
                         System.out.println();
                         break;
                     case "reroll":
-                        if(misses == 0) {
+                        if (misses == 0) {
                             System.out.println("Error: No second chance needed.");
                             break;
                         }
                         System.out.print("Second chance: ");
                         int sc = Roller.hits(misses);
-                        misses = misses-sc;
+                        misses = misses - sc;
                         result += sc;
                         System.out.println(result);
                         break;
@@ -176,6 +184,54 @@ public class Main {
                                     System.out.println("Error: Unknown register '" + split[1] + "'.");
                             }
                         break;
+                    case "save":
+                        if (split.length < 2)
+                            System.out.println("Error: Missing parameter for save location.");
+                        f = new File(merge(split,true));
+                        if(f.exists()) {
+                            if(!f.canWrite()) {
+                                System.out.println("Error: Cannot write to file.");
+                                break;
+                            }
+                        } else try {
+                            if(!f.createNewFile()) {
+                                System.out.println("Error: Cannot create new file.");
+                                break;
+                            }
+                        } catch (IOException e) {
+                            System.out.println("Error: Cannot create new file - " + e.getLocalizedMessage());
+                            break;
+                        } 
+                        try (FileOutputStream fos = new FileOutputStream(f)) {
+                            BufferedWriter fw = new BufferedWriter(new OutputStreamWriter(fos));
+                            elephant.save(fw);
+                            fos.close();
+                        } catch (IOException e) {
+                            System.out.println("Error: Cannot write to file - " + e.getLocalizedMessage());
+                        } 
+                        break;
+                    case "load":
+                        if (split.length < 2) {
+                            System.out.println("Error: Missing parameter for load location.");
+                            break;
+                        }
+                        f = new File(merge(split,true));
+                        if(!f.canRead()) {
+                            System.out.println("Error: Cannot read from file.");
+                            break;
+                        } 
+                        try (FileInputStream fis = new FileInputStream(f)) {
+                            Scanner s = new Scanner(fis);
+                            elephant.load(s);
+                            fis.close();
+                        } catch (IOException e) {
+                            System.out.println("Error: Cannot read from file - " + e.getLocalizedMessage());
+                        } 
+                        break;
+                    case "cwd":
+                    case "pwd":
+                        System.out.println(System.getProperty("user.dir"));
+                        break;
                     case "help":
                         w.clear();
                         HelpPrinter.printHelp();
@@ -216,6 +272,13 @@ public class Main {
             System.out.println(retval);
         } else
             retval = in.nextLine();
+        return retval;
+    }
+    
+    private static String merge(String[] strings, boolean addspace) {
+        String retval = "";
+        for (int i = 1; i < strings.length; ++i)
+            retval += (addspace?" ":"")+strings[i];
         return retval;
     }
 }

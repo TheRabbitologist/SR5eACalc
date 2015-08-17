@@ -65,7 +65,7 @@ public class SR5eAC {
         System.out.println("Enter command...");
         String input = "";
         in = new Scanner(System.in);
-        do {
+        while(true) {
             boolean ptl = false;
             try {
                 System.out.println();
@@ -229,6 +229,10 @@ public class SR5eAC {
                         break;
                     default:
                         System.out.println("Error: Unknown command '" + split[0] + "'.");
+                        break;
+                    case "quit":
+                    case "exit":
+                        System.exit(0);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error: Invalid number format - " + e.getLocalizedMessage());
@@ -241,8 +245,7 @@ public class SR5eAC {
                 w.input();
                 System.exit(1);
             }
-        } while (!input.contentEquals("exit") && !input.contentEquals("quit"));
-        System.exit(0);
+        }
     }
 
     public static String getInput(String query) {

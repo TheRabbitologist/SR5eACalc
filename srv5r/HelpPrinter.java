@@ -15,6 +15,7 @@ public class HelpPrinter {
         System.out.println("\tExamples: 9+5 or 8 or 4-2-1 or -8+5*4");
         System.out.println("\tOnly addition, subtraction, and multiplication operations are supported.");
         System.out.println("\tMuliplication operations are, of course, done before addition and subtraction.");
+        System.out.println("\tExpressions should generally not have spaces anywhere in them.");
         System.out.println("\tnd6 may be embedded in expressions to include a hit roll, ex. 5000+100*4d6");
         System.out.println("\tnr6 may similarly be used for a Rule of 6 roll, for Push The Limit.");
         System.out.println();
@@ -36,6 +37,7 @@ public class HelpPrinter {
         System.out.println("roll <rolltype>: Calculate hits.");
         System.out.println("\tn: Roll nd6, display hits.");
         System.out.println("\tn[l]: Roll nd6 with limit l, display hits.");
+        System.out.println("\tnd6: This is probably not what you want.");
         System.out.println("\tGlitch status is printed in all cases where applicable.");
         System.out.println("test <test>: Perform a success or opposed test.");
         System.out.println("\tn(t): Attempt a success test with threshold t and no limit.");
@@ -54,10 +56,11 @@ public class HelpPrinter {
         System.out.println("damage <dmg> <ap> <target_armor> <target_body>: Calculate damage done and its type.");
         System.out.println("\t<damage>: Should be of the form nP or nS for physical or stun damage.");
         System.out.println("\tAll other arguments may be expressions.");
+        System.out.println("\tNote that where other commands are lenient about spacing, this one is very strict.");
         System.out.println("\tRerolling displays additional damage resisted.");
         System.out.println("set self <attribute> <v>: Set an attribute's value.");
         System.out.println("\tLimits cannot be set, rather they are calculated from the attributes.");
-        System.out.println("\tRemember that v can absolutely be another attribute, useful for technomancers.");
+        System.out.println("\tRemember that v can be another attribute, useful for technomancers.");
         System.out.println("get self <attribute>: Recall an attribute's value.");
         System.out.println("\tThis includes limits.");
         System.out.println("save <file>: Save the set of attributes to a file in your home directory.");

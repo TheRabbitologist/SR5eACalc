@@ -31,6 +31,10 @@ public class HelpPrinter {
         System.out.println("\tResult of the last roll: LAST");
         System.out.println("\tNumber of misses from the last roll: MISS");
         System.out.println("\tArmor value: ARMOR");
+        System.out.println("Skills can also be sored, and are recalled using %SKILLNAME, ex. %PERCEPTION+INT+3");
+        System.out.println("\tThe skill value itself can be any value, even negative, there are no bounds.");
+        System.out.println("\tUnknown skills take a value of -1, the modifier for a skill default.");
+        System.out.println("\tThis system need not only be used for skills, if desired.");
         System.out.println();
         System.out.println("raw <n>: Roll nd6, display results of each roll.");
         System.out.println("dice <n>: Roll nd6, display sum of rolls.");
@@ -64,8 +68,9 @@ public class HelpPrinter {
         System.out.println("set self <attribute> <v>: Set an attribute's value.");
         System.out.println("\tLimits cannot be set, rather they are calculated from the attributes.");
         System.out.println("\tRemember that v can be another attribute, useful for technomancers.");
+        System.out.println("\t<attribte> can also be a skill, prefaced with %, ex. set self %UNARMED 6");
         System.out.println("get self <attribute>: Recall an attribute's value.");
-        System.out.println("\tThis includes limits.");
+        System.out.println("\tThis includes limits and skills.");
         System.out.println("save <file>: Save the set of attributes to a file in your home directory.");
         System.out.println("load <file>: Load a previously saved set of attriubtes.");
         System.out.println("cls: Clear the screen.");

@@ -43,7 +43,7 @@ public class Entity {
                     stats.setStat(stat, Parser.sum(s[1]));
                 else if(key.startsWith("%") && key.length() >= 2) {
                     int value = Parser.sum(s[1]);
-                    if(value > 0)
+                    if(value != -1)
                         skills.put(key, value);
                     else
                         skills.remove(key);

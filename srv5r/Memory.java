@@ -22,6 +22,8 @@ public class Memory {
             for (Stat s : Stat.values())
                 w.append("self " + s.name() + ' ' + self.stats.getStat(s) + '\n');
             w.append("self ESS " + self.stats.getESS() + '\n');
+            for (String s : self.skills.keySet())
+                w.append("self " + s + ' ' + self.skills.get(s) + '\n');
         } catch (Exception e) {
             System.out.println("Error: Could not save stats - " + e.getLocalizedMessage());
         }
@@ -31,12 +33,8 @@ public class Memory {
         try {
             while(s.hasNextLine()) {
                 String[] data = s.nextLine().split("\\s+");
-                if(data[0].contentEquals("self")) {
-                    if(data[1].contentEquals("ESS"))
-                        self.stats.setESS(Double.parseDouble(data[2]));
-                    else
-                        self.stats.setStat(Stat.get(data[1]), Integer.parseInt(data[2]));
-                }
+                if(data[0].contentEquals("self"))
+                    self.set(new String[]{data[1], data[2]});
             }
         } catch (Exception e) {
             System.out.println("Error: Could not load stats - " + e.getLocalizedMessage());

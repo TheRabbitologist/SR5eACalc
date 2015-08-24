@@ -4,7 +4,7 @@
  *
  * For more info, see LICENSE.txt.
  */
-package srv5r;
+package client;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,8 +72,7 @@ public class Entity {
                 else if(prop.startsWith("%") && prop.length() >= 2) {
                     if(skills.containsKey(prop))
                         return skills.get(prop);
-                    else
-                        return -1;
+                    return -1;
                 }
                 return null;
         }

@@ -4,17 +4,21 @@
  *
  * For more info, see LICENSE.txt.
  */
-package srv5r;
+package client;
 
 import java.io.BufferedWriter;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Memory {
 
     public Entity self;
+    public Map<String,String> macros;
 
     public Memory() {
         self = new Entity();
+        macros = new HashMap<>();
     }
 
     public void save(BufferedWriter w) {
@@ -39,5 +43,11 @@ public class Memory {
         } catch (Exception e) {
             System.out.println("Error: Could not load stats - " + e.getLocalizedMessage());
         }
+    }
+    
+    public int macro(String s) {
+        if(macros.containsKey(s))
+            return Parser.sum(macros.get(s));
+        return 0;
     }
 }

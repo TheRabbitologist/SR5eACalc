@@ -4,7 +4,7 @@
  *
  * For more info, see LICENSE.txt.
  */
-package srv5r;
+package client;
 
 import java.util.Random;
 

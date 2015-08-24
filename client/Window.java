@@ -98,7 +98,7 @@ public class Window {
 
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(640, 320);
+        frame.setSize(480, 560);
     }
     public String input() {
         jtf.enable();

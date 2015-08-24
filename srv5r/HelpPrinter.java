@@ -69,9 +69,11 @@ public class HelpPrinter {
         System.out.println("set self <attribute> <v>: Set an attribute's value.");
         System.out.println("\tLimits cannot be set, rather they are calculated from the attributes.");
         System.out.println("\tRemember that v can be another attribute, useful for technomancers.");
-        System.out.println("\t<attribte> can also be a skill, prefaced with %, ex. set self %UNARMED 6");
-        System.out.println("get self <attribute>: Recall an attribute's value.");
-        System.out.println("\tThis includes limits and skills.");
+        System.out.println("set self %<skill> <v>: Set a skill's value.");
+        System.out.println("\tv can evaluate to any number within the range of a Java int.");
+        System.out.println("\tSkill values are only stored and serialized if their value is not -1.");
+        System.out.println("get self <property>: Recall an property's value.");
+        System.out.println("\tThis includes attributes, limits, and skills.");
         System.out.println("save <file>: Save the set of attributes to a file in your home directory.");
         System.out.println("load <file>: Load a previously saved set of attriubtes.");
         System.out.println("cls: Clear the screen.");

@@ -6,6 +6,7 @@
  */
 package srv5r;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -13,11 +14,13 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
 
 class TextAreaOutputStream extends OutputStream {
     private final JTextArea ta;
@@ -42,15 +45,24 @@ public class Window {
         frame = new JFrame();
         frame.setTitle(SR5eAC.NAME);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBackground(Color.BLACK);
+        frame.setForeground(Color.BLACK);
         input = new StringBuilder();
         
         ta = new JTextArea();
         ta.setEditable(false);
+        ta.setBackground(Color.BLACK);
+        ta.setForeground(Color.WHITE);
         PrintStream ps = new PrintStream(new TextAreaOutputStream(ta));
         System.setOut(ps);
         jsp = new JScrollPane(ta);
         
         jtf = new JTextField(24);
+        jtf.setBackground(Color.BLACK);
+        jtf.setBorder(BorderFactory.createBevelBorder(
+                BevelBorder.LOWERED, Color.BLACK, Color.DARK_GRAY));
+        jtf.setForeground(Color.CYAN);
+        jtf.setCaretColor(Color.CYAN);
         jtf.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

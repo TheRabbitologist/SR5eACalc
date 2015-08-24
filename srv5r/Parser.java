@@ -12,11 +12,15 @@ public class Parser {
         if(str == null || str.isEmpty())
             return 0;
         if(str.endsWith("d6"))
+            return Roller.roll(parseField(str.substring(0,str.length()-2)));
+        if(str.endsWith("h6"))
             return Roller.hits(parseField(str.substring(0,str.length()-2)),false);
         if(str.endsWith("r6"))
             return Roller.hits(parseField(str.substring(0,str.length()-2)),true);
         if(str.endsWith("?g"))
             return (Roller.glitched()?parseField(str.substring(0,str.length()-2)):0);
+        //if(str.charAt(0) == '$' && str.length() > 1)
+            //return SR5eAC.getMemory().macro(str.substring(1));
         if(str.toUpperCase().contentEquals("LAST"))
             return SR5eAC.getResult();
         if(str.toUpperCase().contentEquals("MISS"))

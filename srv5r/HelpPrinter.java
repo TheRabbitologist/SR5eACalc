@@ -16,7 +16,8 @@ public class HelpPrinter {
         System.out.println("\tOnly addition, subtraction, and multiplication operations are supported.");
         System.out.println("\tMuliplication operations are, of course, done before addition and subtraction.");
         System.out.println("\tExpressions should generally not have spaces anywhere in them.");
-        System.out.println("\tnd6 may be embedded in expressions to include a hit roll, ex. 5000+100*4d6");
+        System.out.println("\tnd6 may be embedded in expressions to include a traditional roll, ex. 5000+100*4d6");
+        System.out.println("\tnh6 may similarly be used for a Shadowrun hits roll, ignoring glitches.");
         System.out.println("\tnr6 may similarly be used for a Rule of 6 roll, for Push The Limit.");
         System.out.println();
         System.out.println("Certain attributes and such can be stored and recalled.");

@@ -6,6 +6,11 @@
  */
 package client;
 
+import server.Memory;
+import server.Parser;
+import server.Roller;
+import server.TestHandler;
+import server.Entity;
 import java.awt.GraphicsEnvironment;
 import java.io.BufferedWriter;
 import java.io.File;

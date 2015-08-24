@@ -4,7 +4,9 @@
  *
  * For more info, see LICENSE.txt.
  */
-package client;
+package server;
+
+import client.SR5eAC;
 
 public class Parser {
 

@@ -4,7 +4,7 @@
  *
  * For more info, see LICENSE.txt.
  */
-package client;
+package server;
 
 import java.io.BufferedWriter;
 import java.util.Scanner;

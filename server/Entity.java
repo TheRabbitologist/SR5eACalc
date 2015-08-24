@@ -4,7 +4,7 @@
  *
  * For more info, see LICENSE.txt.
  */
-package client;
+package server;
 
 import java.util.HashMap;
 import java.util.Map;
